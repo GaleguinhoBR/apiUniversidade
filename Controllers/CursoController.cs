@@ -12,10 +12,12 @@ namespace apiUniversidade.Controllers
     public class CursoController : Controller
     {
        private readonly ILogger<CursoController> _logger;
+       private readonly apiUniversidade _context;
 
-        public CursoController(ILogger<CursoController> logger)
+        public CursoController(ILogger<CursoController> logger, ApiUniversidadeContext context)
         {
             _logger = logger;
+            _context = context;
         }
         [HttpGet]
         public ActionResult<IEnumerable<Curso>> Get()
