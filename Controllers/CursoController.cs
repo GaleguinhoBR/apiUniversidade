@@ -17,30 +17,15 @@ namespace apiUniversidade.Controllers
         {
             _logger = logger;
         }
-        [HttpGet(Name = "cursos")]
-        public List<Curso> GetDisciplina(){
-            List<Curso> Cursos = new List<Curso>();
+        [HttpGet]
+        public ActionResult<IEnumerable<Curso>> Get()
+        {
+            var cursos = context.Cursos.ToList():
+            if(cursos is null)
+                return NotFound();
+            
+            return cursos;
+        }
+    } 
 
-            Curso c1 = new Curso();
-            c1.Nome = "Informática";
-            c1.Area = "D16";
-            c1.duracao = 12;
-
-            Curso c2 = new Curso();
-            c2.Nome = "Alimentos";
-            c2.Area = "D17";
-            c2.duracao = 12;
-
-            Curso c3 = new Curso();
-            c3.Nome = "MSI :(";
-            c3.Area = "D18";
-            c3.duracao = 12;
-
-            Cursos.Add(c1);
-            Cursos.Add(c2);
-            Cursos.Add(c3);
-
-            return Cursos;
-        } 
-    }
 }
