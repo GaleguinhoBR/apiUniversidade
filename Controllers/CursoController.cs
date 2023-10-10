@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using apiUniversidade.Context;
 using apiUniversidade.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,9 +13,9 @@ namespace apiUniversidade.Controllers
     public class CursoController : Controller
     {
        private readonly ILogger<CursoController> _logger;
-       private readonly apiUniversidade _context;
+       private readonly apiUniversidadeContext _context;
 
-        public CursoController(ILogger<CursoController> logger, ApiUniversidadeContext context)
+        public CursoController(ILogger<CursoController> logger, apiUniversidadeContext context)
         {
             _logger = logger;
             _context = context;
@@ -22,7 +23,7 @@ namespace apiUniversidade.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Curso>> Get()
         {
-            var cursos = context.Cursos.ToList():
+            var cursos = _context.Cursos.ToList();
             if(cursos is null)
                 return NotFound();
             
