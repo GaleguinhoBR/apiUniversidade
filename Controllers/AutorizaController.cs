@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Identity;
 using apiUniversidade.DTO;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace apiUniversidade.Controllers
 {
@@ -63,9 +66,9 @@ namespace apiUniversidade.Controllers
                 new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
 
-            var key = new SymmetricAlgorithmSecurityKey(Encooding.UTF8.GetBytes(_configuration["Jwt:key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:key"]));
 
-            var credentials = new SigningCredentials(key,SecurityAlgorithms.Hmac5ha256);
+            var credentials = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
 
             var expiracao = _configuration["TokenConfiguration:ExpireHours"];
             var expiration = DateTime.UtcNow.AddHours(double.Parse(expiracao));
