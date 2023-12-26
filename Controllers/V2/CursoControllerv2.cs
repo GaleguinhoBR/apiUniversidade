@@ -12,14 +12,14 @@ namespace apiUniversidade.Controllers
 {
     [Authorize(AuthenticationSchemes = "Bearer")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/{v:apiversion}/curso")]
-    public class CursoController : Controller
+    public class CursoControllerv2 : Controller
     {
        private readonly ILogger<CursoController> _logger;
        private readonly apiUniversidadeContext _context;
 
-        public CursoController(ILogger<CursoController> logger, apiUniversidadeContext context)
+        public CursoControllerv2(ILogger<CursoController> logger, apiUniversidadeContext context)
         {
             _logger = logger;
             _context = context;
@@ -29,7 +29,7 @@ namespace apiUniversidade.Controllers
         [Route("exemplo")]
         public string GetExemplo()
         {
-            return "Api v1";
+            return "Api v2";
         }
         
         [HttpGet]
